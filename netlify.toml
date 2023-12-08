@@ -1,7 +1,6 @@
 [build]
 command = "npm run prerender"
 publish = "dist/password-manager/browser"
-node_version = "14"
 
 [[redirects]]
   from = "/*"
