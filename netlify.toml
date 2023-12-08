@@ -1,0 +1,8 @@
+[build]
+command = "npm run prerender"
+publish = "dist/password-manager/browser"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
