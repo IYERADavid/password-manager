@@ -3,6 +3,7 @@ import { PasswordManagerService } from '../password-manager.service';
 import { Observable } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,9 +21,13 @@ export class SiteListComponent implements OnInit {
 
   formState: string = "Add new";
 
-  constructor(private passwordManager: PasswordManagerService, private snackbar: MatSnackBar) {
+  constructor(private passwordManager: PasswordManagerService, private snackbar: MatSnackBar, private router: Router ) {
+    if (!localStorage.getItem('user_id')){
+      router.navigate(['/'])
+    } else {
     this.loadSites()
-   }
+    }
+  }
 
   ngOnInit(): void {
   }

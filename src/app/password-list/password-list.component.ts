@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PasswordManagerService } from '../password-manager.service';
 import { Observable } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -27,7 +27,10 @@ export class PasswordListComponent implements OnInit {
 
 
   constructor( private  route: ActivatedRoute, private snackbar: MatSnackBar,
-    private passwordmanager: PasswordManagerService) {
+    private passwordmanager: PasswordManagerService, private router: Router ) {
+    if (!localStorage.getItem('user_id')){
+      router.navigate(['/'])
+    } else {
     this.route.queryParams.subscribe((data)=>{
       this.siteId = data.id;
       this.siteName = data.siteName;
@@ -36,6 +39,7 @@ export class PasswordListComponent implements OnInit {
     })
     this.loadpasswords()
    }
+  }
 
   ngOnInit(): void {
   }

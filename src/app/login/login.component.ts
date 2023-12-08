@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   }
 
   onsubmit (values: any) {
-    this.passwordmanager.login(values.Email, values.Password).then(()=>{
+    this.passwordmanager.login(values.Email, values.Password).then((user_data)=>{
+      console.log(user_data)
+      localStorage.setItem("user_id",user_data.user.uid)
       this.router.navigate(["/site-list"])
       this.snackbar.open('logged in successfully!', 'Close',{duration: 5000});
     }).catch(()=>{
